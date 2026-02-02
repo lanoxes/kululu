@@ -1,111 +1,102 @@
 
 import React, { useState } from 'react';
-import { Agent, Ability, ChatMessage } from '../types';
+import { Agent, ChatMessage } from '../types';
 import { getAgentResponse } from '../services/gemini';
-import { Send, MapPin, User, Shield, Info } from 'lucide-react';
+import { Send, MapPin, Shield, Info, MessageSquare, User, Zap } from 'lucide-react';
 
 interface AgentDetailsProps {
   agent: Agent;
 }
 
 const AgentDetails: React.FC<AgentDetailsProps> = ({ agent }) => {
-  const [activeTab, setActiveTab] = useState<'bio' | 'abilities' | 'chat'>('bio');
+  const [activeTab, setActiveTab] = useState<'biodata' | 'abilities' | 'chat'>('biodata');
   const [input, setInput] = useState('');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState(false);
 
   const handleSendMessage = async () => {
     if (!input.trim()) return;
-    
     const userMsg: ChatMessage = { role: 'user', content: input };
     setChatHistory(prev => [...prev, userMsg]);
     setInput('');
     setIsTyping(true);
 
     const reply = await getAgentResponse(agent, input);
-    
-    // Fixed: Changed role from 'agent' to 'assistant' to match ChatMessage type definition
     setChatHistory(prev => [...prev, { role: 'assistant', content: reply }]);
     setIsTyping(false);
   };
 
   return (
-    <div className="bg-[#1a2b3c]/50 backdrop-blur-md rounded-lg border border-white/5 overflow-hidden flex flex-col h-full shadow-2xl">
-      <div className="flex border-b border-white/10 bg-[#1a2b3c]">
-        {(['bio', 'abilities', 'chat'] as const).map((tab) => (
+    <div className="bg-white/5 border border-white/10 rounded-xl overflow-hidden flex flex-col h-full shadow-2xl animate-in fade-in slide-in-from-right-10 duration-500">
+      {/* Tab Navigation */}
+      <div className="flex border-b border-white/10 bg-white/5 flex-wrap">
+        {(['biodata', 'abilities', 'chat'] as const).map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex-1 py-4 val-font text-lg tracking-wider transition-all relative overflow-hidden ${
-              activeTab === tab ? 'text-valorant-red' : 'text-gray-400 hover:text-white'
+            className={`flex-1 min-w-[100px] py-6 val-font text-lg tracking-widest transition-all relative font-black uppercase italic ${
+              activeTab === tab ? 'text-[#ff4655]' : 'text-gray-500 hover:text-white'
             }`}
           >
             {tab}
             {activeTab === tab && (
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-valorant-red shadow-[0_0_10px_#ff4655]"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-[#ff4655] shadow-[0_0_20px_#ff4655]"></div>
             )}
           </button>
         ))}
       </div>
 
-      <div className="flex-1 overflow-y-auto p-6 scroll-smooth">
-        {activeTab === 'bio' && (
-          <div className="space-y-6 animate-fadeIn">
+      <div className="flex-1 overflow-y-auto p-10 space-y-8">
+        {activeTab === 'biodata' && (
+          <div className="space-y-8 animate-in fade-in duration-500">
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded border border-white/10">
-                <MapPin size={16} className="text-valorant-red" />
-                <span className="text-sm font-semibold uppercase tracking-tight">{agent.origin}</span>
+              <div className="flex items-center gap-2 bg-[#ff4655]/10 px-4 py-2 rounded border border-[#ff4655]/20">
+                <MapPin size={16} className="text-[#ff4655]" />
+                <span className="text-xs font-black uppercase tracking-widest">{agent.origin}</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded border border-white/10">
-                <Shield size={16} className="text-valorant-red" />
-                <span className="text-sm font-semibold uppercase tracking-tight">{agent.role}</span>
+              <div className="flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded border border-blue-500/20">
+                <Shield size={16} className="text-blue-500" />
+                <span className="text-xs font-black uppercase tracking-widest">{agent.role}</span>
               </div>
             </div>
             
             <div className="relative">
-              <p className="text-lg leading-relaxed text-gray-300 italic font-light">
+               <div className="absolute -left-6 top-0 bottom-0 w-1 bg-[#ff4655] opacity-30"></div>
+               <p className="text-2xl leading-relaxed text-gray-300 italic font-light font-serif">
                 "{agent.bio}"
               </p>
-              <div className="absolute -left-4 top-0 h-full w-1 bg-valorant-red opacity-30"></div>
             </div>
 
-            <div className="mt-8">
-              <h4 className="val-font text-xl text-valorant-red mb-4">Tactical Evaluation</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white/5 p-4 rounded border border-white/5">
-                  <span className="text-xs text-gray-500 block mb-1 uppercase tracking-tighter">Combat Style</span>
-                  <span className="text-sm">High Mobility, Aggressive</span>
-                </div>
-                <div className="bg-white/5 p-4 rounded border border-white/5">
-                  <span className="text-xs text-gray-500 block mb-1 uppercase tracking-tighter">Difficulty</span>
-                  <div className="flex gap-1">
-                    <div className="h-1.5 w-6 bg-valorant-red"></div>
-                    <div className="h-1.5 w-6 bg-valorant-red"></div>
-                    <div className="h-1.5 w-6 bg-gray-700"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-10 border-t border-white/5">
+               <div className="space-y-2">
+                  <span className="text-[10px] text-gray-600 font-bold uppercase tracking-[0.4em]">Combat Assessment</span>
+                  <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                     <div className="h-full bg-[#ff4655]" style={{ width: '85%' }}></div>
                   </div>
-                </div>
-              </div>
+               </div>
+               <div className="space-y-2">
+                  <span className="text-[10px] text-gray-600 font-bold uppercase tracking-[0.4em]">Tactical Utility</span>
+                  <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                     <div className="h-full bg-blue-500" style={{ width: '70%' }}></div>
+                  </div>
+               </div>
             </div>
           </div>
         )}
 
         {activeTab === 'abilities' && (
-          <div className="space-y-4 animate-fadeIn">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-in fade-in duration-500">
             {agent.abilities.map((ability) => (
-              <div 
-                key={ability.slot} 
-                className="group bg-white/5 p-4 rounded-lg border border-white/5 hover:border-valorant-red/30 transition-all cursor-default"
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center gap-3">
-                    <span className="flex items-center justify-center w-8 h-8 rounded bg-valorant-red/20 text-valorant-red font-bold text-sm border border-valorant-red/30">
-                      {ability.slot}
-                    </span>
-                    <h4 className="font-bold text-lg group-hover:text-valorant-red transition-colors">{ability.name}</h4>
+              <div key={ability.slot} className="p-6 bg-white/5 border border-white/5 rounded-lg group hover:border-[#ff4655]/30 transition-all">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-10 h-10 flex items-center justify-center border border-[#ff4655]/50 bg-[#ff4655]/5 text-[#ff4655] val-font font-black rounded">
+                    {ability.slot}
                   </div>
-                  <Info size={16} className="text-gray-600 group-hover:text-valorant-red/50" />
+                  <h4 className="val-font text-xl font-bold italic uppercase tracking-tight group-hover:text-[#ff4655] transition-colors">
+                    {ability.name}
+                  </h4>
                 </div>
-                <p className="text-sm text-gray-400 leading-relaxed pl-11">
+                <p className="text-xs text-gray-400 leading-relaxed uppercase tracking-widest opacity-70">
                   {ability.description}
                 </p>
               </div>
@@ -114,23 +105,20 @@ const AgentDetails: React.FC<AgentDetailsProps> = ({ agent }) => {
         )}
 
         {activeTab === 'chat' && (
-          <div className="flex flex-col h-full animate-fadeIn">
-            <div className="flex-1 space-y-4 mb-4">
+          <div className="flex flex-col h-full animate-in fade-in duration-500">
+            <div className="flex-1 space-y-6 mb-8 min-h-[400px]">
               {chatHistory.length === 0 && (
-                <div className="text-center py-10 opacity-40">
-                  <User size={48} className="mx-auto mb-4" />
-                  <p className="text-sm val-font tracking-widest uppercase">Protocol Initialized. Send a message to {agent.name}.</p>
+                <div className="text-center py-20 opacity-30">
+                  <MessageSquare size={64} className="mx-auto mb-4 text-[#ff4655]" />
+                  <p className="val-font text-sm tracking-widest uppercase font-black">Uplink Established. Communication Ready.</p>
                 </div>
               )}
               {chatHistory.map((msg, idx) => (
-                <div 
-                  key={idx} 
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div className={`max-w-[80%] p-3 rounded-lg text-sm shadow-sm ${
+                <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`max-w-[80%] p-5 rounded-xl text-xs font-bold tracking-widest uppercase leading-loose ${
                     msg.role === 'user' 
-                      ? 'bg-valorant-red text-white rounded-br-none' 
-                      : 'bg-[#1a2b3c] border border-white/10 text-gray-200 rounded-bl-none'
+                      ? 'bg-[#ff4655] text-[#0f1923]' 
+                      : 'bg-white/5 border border-white/10 text-gray-200'
                   }`}>
                     {msg.content}
                   </div>
@@ -138,28 +126,28 @@ const AgentDetails: React.FC<AgentDetailsProps> = ({ agent }) => {
               ))}
               {isTyping && (
                 <div className="flex justify-start">
-                  <div className="bg-[#1a2b3c] border border-white/10 p-3 rounded-lg flex gap-1 animate-pulse">
-                    <div className="w-2 h-2 bg-valorant-red rounded-full"></div>
-                    <div className="w-2 h-2 bg-valorant-red rounded-full delay-75"></div>
-                    <div className="w-2 h-2 bg-valorant-red rounded-full delay-150"></div>
+                  <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex gap-2">
+                    <div className="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-bounce"></div>
+                    <div className="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-bounce [animation-delay:0.2s]"></div>
+                    <div className="w-1.5 h-1.5 bg-[#ff4655] rounded-full animate-bounce [animation-delay:0.4s]"></div>
                   </div>
                 </div>
               )}
             </div>
             
-            <div className="sticky bottom-0 bg-[#0f1923] p-2 rounded-lg flex items-center gap-2 border border-white/10">
+            <div className="mt-auto bg-[#0f1923] p-4 rounded-xl border border-white/10 flex items-center gap-4">
               <input 
                 type="text" 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
-                placeholder={`Ask ${agent.name} something...`}
-                className="flex-1 bg-transparent border-none outline-none text-sm p-2 focus:ring-0"
+                placeholder={`Uplink to ${agent.name}...`}
+                className="flex-1 bg-transparent border-none outline-none text-xs font-bold uppercase tracking-widest focus:ring-0"
               />
               <button 
                 onClick={handleSendMessage}
                 disabled={isTyping}
-                className="p-2 text-valorant-red hover:bg-white/5 rounded-full transition-colors disabled:opacity-50"
+                className="p-3 bg-[#ff4655] text-[#0f1923] rounded-lg hover:bg-white transition-all disabled:opacity-50"
               >
                 <Send size={18} />
               </button>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Product } from '../types';
-import { Recycle, Zap, Heart, Plus, Star } from 'lucide-react';
+import { Recycle, Zap, Heart, Plus, Star, Box, Sparkles } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -20,79 +20,84 @@ const ProductCard: React.FC<ProductCardProps> = ({
   onAddToCart, 
   onClick 
 }) => {
+  const isCase = product.category === 'Supply Cases';
+
   return (
     <div 
       onClick={onClick}
-      className={`relative group cursor-pointer transition-all duration-500 overflow-hidden rounded-xl border-2 ${
+      className={`relative group cursor-pointer transition-all duration-700 overflow-hidden rounded-[2rem] border-2 ${
         isSelected 
-          ? 'border-emerald-500 bg-emerald-500/5 shadow-[0_0_20px_rgba(16,185,129,0.2)]' 
-          : 'border-white/5 bg-slate-900 hover:border-white/20'
+          ? 'border-emerald-500 bg-emerald-500/5 shadow-2xl shadow-emerald-500/10' 
+          : 'border-white/5 bg-white/[0.02] hover:border-white/20'
       }`}
     >
-      <div className="h-48 overflow-hidden relative">
+      <div className="h-60 overflow-hidden relative">
         <img 
           src={product.image} 
           alt={product.name} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
+          className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80"></div>
         
-        {product.isUpcycled && (
-          <div className="absolute top-3 left-3 bg-emerald-500 text-slate-950 px-2 py-1 rounded text-[10px] font-bold flex items-center gap-1 uppercase tracking-tighter z-10">
-            <Recycle size={10} /> Upcycled
-          </div>
-        )}
+        <div className="absolute top-5 left-5 flex flex-col gap-2 z-10">
+          {product.isUpcycled && (
+            <div className="bg-emerald-500 text-slate-950 px-3 py-1 rounded-xl text-[9px] font-black flex items-center gap-2 uppercase tracking-widest shadow-lg">
+              <Recycle size={12} /> Salvaged
+            </div>
+          )}
+          {product.isRecommended && (
+            <div className="bg-amber-500 text-slate-950 px-3 py-1 rounded-xl text-[9px] font-black flex items-center gap-2 uppercase tracking-widest shadow-lg animate-pulse">
+              <Sparkles size={12} /> Top Pick
+            </div>
+          )}
+        </div>
 
-        {/* Quick Actions Overlay */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 translate-x-12 group-hover:translate-x-0 transition-transform duration-300 z-10">
+        <div className="absolute top-5 right-5 flex flex-col gap-2 translate-x-16 group-hover:translate-x-0 transition-transform duration-500 z-10">
           <button 
             onClick={onToggleWishlist}
-            className={`p-2 rounded-lg backdrop-blur-md transition-all ${
-              isWishlisted ? 'bg-rose-500 text-white' : 'bg-white/10 text-white hover:bg-rose-500'
+            className={`p-3 rounded-2xl backdrop-blur-md transition-all ${
+              isWishlisted ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/20' : 'bg-white/10 text-white hover:bg-rose-500'
             }`}
           >
-            <Heart size={16} fill={isWishlisted ? "currentColor" : "none"} />
+            <Heart size={18} fill={isWishlisted ? "currentColor" : "none"} />
           </button>
-          <button 
-            onClick={onAddToCart}
-            className="p-2 bg-emerald-500 text-slate-950 rounded-lg hover:bg-emerald-400 transition-all"
-          >
-            <Plus size={16} />
-          </button>
+          {!isCase && (
+            <button 
+              onClick={onAddToCart}
+              className="p-3 bg-emerald-500 text-slate-950 rounded-2xl hover:bg-emerald-400 shadow-lg shadow-emerald-500/20 transition-all"
+            >
+              <Plus size={18} />
+            </button>
+          )}
         </div>
       </div>
 
-      <div className="p-4">
-        <div className="flex justify-between items-start mb-1">
-          <p className="val-font text-xs tracking-widest text-emerald-500 opacity-80">{product.category}</p>
-          <span className="text-emerald-400 font-bold">${product.price.toFixed(0)}</span>
+      <div className="p-7">
+        <div className="flex justify-between items-center mb-3">
+          <p className="text-[9px] tracking-[0.3em] text-emerald-500 font-black uppercase opacity-60">{product.category}</p>
+          <div className="flex items-center gap-1.5 bg-slate-800/50 px-2 py-0.5 rounded-lg border border-white/5">
+            <Star size={10} className="text-yellow-500 fill-current" />
+            <span className="text-[10px] font-black text-slate-300">{product.rating}</span>
+          </div>
         </div>
-        <h3 className="val-font text-2xl font-bold leading-none mb-2 truncate">{product.name}</h3>
+        <h3 className="heading-font text-xl font-bold leading-tight mb-4 truncate uppercase italic tracking-tight">{product.name}</h3>
         
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex items-center gap-1">
-            <Star size={12} className="text-yellow-500 fill-current" />
-            <span className="text-xs font-bold">{product.rating.toFixed(1)}</span>
-          </div>
-          <span className="text-[10px] text-gray-500 uppercase tracking-tighter">({product.reviewsCount} REVIEWS)</span>
-        </div>
-
-        <div className="flex items-center gap-2 mt-auto">
-          <div className="flex-1 h-1 bg-white/5 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-emerald-500" 
-              style={{ width: `${product.recycledContent}%` }}
-            ></div>
-          </div>
-          <span className="text-[10px] text-gray-500 val-font">{product.recycledContent}% RECYCLED</span>
+        <div className="flex items-end justify-between">
+           <div className="space-y-1">
+              <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest">Pricing</span>
+              <p className="heading-font text-2xl font-bold text-white tracking-tight">${product.price.toLocaleString()}</p>
+           </div>
+           <div className="flex flex-col items-end gap-1.5">
+              <span className="text-[8px] text-slate-600 font-black uppercase tracking-widest">Purity Index</span>
+              <div className="w-16 h-1 bg-white/5 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-emerald-500 transition-all duration-1000" 
+                  style={{ width: `${product.recycledContent}%` }}
+                ></div>
+              </div>
+           </div>
         </div>
       </div>
-      
-      {isSelected && (
-        <div className="absolute top-3 right-3 text-emerald-500 animate-pulse hidden group-hover:block">
-          <Zap size={16} fill="currentColor" />
-        </div>
-      )}
     </div>
   );
 };

@@ -1,10 +1,12 @@
 
 export enum ProductCategory {
-  HARDWARE = 'Hardware',
-  ACCESSORY = 'Recycled Accessory',
-  PERIPHERAL = 'Peripheral',
-  PACKAGE = 'PC Package',
-  GAME_REBOOT = 'Ijong Game-Reboots'
+  HARDWARE = 'Graphics Cards',
+  CPU = 'Processors',
+  MONITOR = 'Displays',
+  KEYBOARD = 'Keyboards',
+  MOUSE = 'Mouse',
+  GAME_REBOOT = 'Supply Cases',
+  STEAM_WALLET = 'Steam Balance'
 }
 
 export interface Specification {
@@ -27,13 +29,20 @@ export interface Product {
   price: number;
   description: string;
   specs: Specification[];
-  recycledContent: number; // Percentage 0-100
+  recycledContent: number;
   image: string;
   color: string;
   isUpcycled: boolean;
+  isRecommended?: boolean;
   rating: number;
   reviewsCount: number;
   reviews?: Review[];
+  rarity?: 'common' | 'uncommon' | 'rare' | 'mythical' | 'legendary';
+}
+
+export interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
 }
 
 export interface Ability {
@@ -50,9 +59,4 @@ export interface Agent {
   origin: string;
   bio: string;
   abilities: Ability[];
-}
-
-export interface ChatMessage {
-  role: 'user' | 'assistant';
-  content: string;
 }

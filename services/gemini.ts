@@ -2,49 +2,54 @@
 import { GoogleGenAI } from "@google/genai";
 import { Product, Agent } from "../types";
 
+// Initialize Gemini API client using environment-provided API key
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
+/**
+ * Generates a technical advisor response for products
+ */
 export const getTechAdvisorResponse = async (product: Product, userMessage: string) => {
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `User asks about ${product.name}: ${userMessage}`,
+      contents: `User asks about ${product.name} (${product.category}): ${userMessage}`,
       config: {
-        systemInstruction: `You are the 'ijong-mechanics Support & Tech Advisor'. 
-        You are an expert in both high-end computer hardware and sustainable upcycling.
-        The current product being viewed is ${product.name}, which is a ${product.category}.
-        
-        Your goals:
-        1. Answer technical compatibility questions.
-        2. Explain the sustainability impact of upcycled items.
-        3. Help with customer service queries (shipping, returns, order status).
-        
-        Tone: Efficient, knowledgeable, eco-conscious, and slightly 'mechanic' themed.
-        Keep responses under 3 sentences.`,
+        systemInstruction: `Anda adalah Teknisi Senior di Ijong-Mechanics. 
+        Tugas Anda adalah memberikan saran teknis tentang produk perangkat keras komputer yang sedang dilihat pengguna.
+        Kepribadian Anda: Profesional, teknis, namun peduli pada keberlanjutan (sustainability).
+        Gunakan istilah teknis seperti "thermal throttling", "bottleneck", atau "overclocking" jika relevan.
+        Jaga jawaban tetap singkat (maks 3 kalimat).`,
         temperature: 0.7,
-        topP: 0.9,
       },
     });
-    return response.text || "I'm recalibrating the response grid... try again soon.";
+    return response.text || "Komunikasi terputus. Mohon ulangi.";
   } catch (error) {
     console.error("Gemini Error:", error);
-    return "The communication relay is offline. Please check your network.";
+    return "Error: Koneksi ke database teknis terputus.";
   }
 };
 
+/**
+ * Generates a character-accurate response for Agents using Gemini API
+ */
 export const getAgentResponse = async (agent: Agent, userMessage: string) => {
+  // Fix: Replaced placeholder logic with actual Gemini API integration
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
-      contents: `User message to ${agent.name}: ${userMessage}`,
+      contents: userMessage,
       config: {
-        systemInstruction: `You are ${agent.name}, a tactical operative from ${agent.origin}. 
-        Keep your response concise.`,
+        systemInstruction: `Anda adalah ${agent.name}, agen dengan peran ${agent.role} dari ${agent.origin}. 
+        Biodata: ${agent.bio}. 
+        Meresponlah kepada pengguna sebagai karakter tersebut. 
+        Gunakan gaya bahasa yang sesuai dengan kepribadiannya (dari VALORANT). 
+        Jaga jawaban tetap singkat dan padat (maksimal 2-3 kalimat).`,
         temperature: 0.8,
       },
     });
-    return response.text || "No signal.";
+    return response.text || "Uplink disconnected.";
   } catch (error) {
-    return "Comm link failed.";
+    console.error("Agent Gemini Error:", error);
+    return "Protocol terminated due to signal interference.";
   }
 };
