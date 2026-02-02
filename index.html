@@ -4,53 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ijong-mechanics // Premium Tech Upcycling</title>
+    <title>VALORANT // AGENT ARCHIVE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --emerald-primary: #10b981;
-            --slate-bg: #020617;
+            --val-red: #ff4655;
+            --val-offwhite: #ece8e1;
+            --val-dark: #0f1923;
         }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--slate-bg);
-            color: #f8fafc;
+            background-color: var(--val-offwhite);
+            color: var(--val-dark);
             margin: 0;
             overflow-x: hidden;
-            letter-spacing: -0.01em;
         }
-        .heading-font {
+        .val-font {
             font-family: 'Outfit', sans-serif;
+            letter-spacing: -0.02em;
         }
         
         /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
         }
-        ::-webkit-scrollbar-track {
-            background: #020617;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.05);
         }
-        ::-webkit-scrollbar-thumb {
-            background: #10b981;
-            border-radius: 10px;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: var(--val-red);
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .scan-line::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #10b981, transparent);
-            opacity: 0.03;
-            animation: scanline 8s linear infinite;
-            pointer-events: none;
+        .animate-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Valorant Grid Pattern */
+        .val-grid {
+            background-image: radial-gradient(var(--val-dark) 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+            opacity: 0.05;
         }
     </style>
 <script type="importmap">
@@ -65,7 +63,8 @@
 }
 </script>
 </head>
-<body class="scan-line relative">
+<body class="relative">
+    <div class="val-grid fixed inset-0 pointer-events-none"></div>
     <div id="root"></div>
 </body>
 </html>

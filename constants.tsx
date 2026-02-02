@@ -1,193 +1,65 @@
 
-import { Product, ProductCategory } from './types';
+import { Agent } from './types';
 
-export const PRODUCTS: Product[] = [
-  // KEYBOARDS
+export const AGENTS: Agent[] = [
   {
-    id: 'kb-razer-bw-v4',
-    name: 'Razer BlackWidow V4 Pro',
-    category: ProductCategory.KEYBOARD,
-    price: 229.00,
-    recycledContent: 15,
-    isUpcycled: true,
-    isRecommended: true,
-    description: 'The ultimate mechanical gaming keyboard. Featuring Razer Green Mechanical Switches and immersive 3-side underglow.',
-    image: 'https://images.unsplash.com/photo-1626954211922-7910d522e4a4?auto=format&fit=crop&q=80&w=1000',
-    color: '#00ff00',
-    rating: 4.9,
-    reviewsCount: 320,
-    specs: [
-      { label: 'Switch', value: 'Razer Green Clicky' },
-      { label: 'Lighting', value: 'Chroma RGB' },
-      { label: 'Polling Rate', value: '8000Hz' }
+    id: 'jett',
+    name: 'JETT',
+    role: 'Duelist',
+    origin: 'South Korea',
+    image: 'https://images.unsplash.com/photo-1614036417651-efe591214972?q=80&w=1000&auto=format&fit=crop',
+    bio: 'Representing her home country of South Korea, Jett’s agile and evasive fighting style lets her take risks no one else can. She runs circles around every skirmish, cutting enemies before they even know what hit them.',
+    stats: { aggression: 95, tactical: 40, difficulty: 60 },
+    abilities: [
+      { slot: 'Q', name: 'Updraft', description: 'Instantly propel Jett high into the air.' },
+      { slot: 'E', name: 'Tailwind', description: 'Instantly propel Jett in the direction she is moving.' },
+      { slot: 'C', name: 'Cloudburst', description: 'Instantly throw a projectile that expands into a brief vision-blocking cloud.' },
+      { slot: 'X', name: 'Blade Storm', description: 'Equip a set of highly accurate throwing knives.' }
     ]
   },
   {
-    id: 'kb-logi-gpro-x',
-    name: 'Logitech G Pro X TKL Lightspeed',
-    category: ProductCategory.KEYBOARD,
-    price: 199.00,
-    recycledContent: 20,
-    isUpcycled: false,
-    description: 'Designed with pros, engineered to win. The next evolution of the pro gaming keyboard.',
-    image: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?auto=format&fit=crop&q=80&w=1000',
-    color: '#00a3ff',
-    rating: 4.8,
-    reviewsCount: 145,
-    specs: [
-      { label: 'Wireless', value: 'Lightspeed' },
-      { label: 'Form Factor', value: 'Tenkeyless' }
+    id: 'sage',
+    name: 'SAGE',
+    role: 'Sentinel',
+    origin: 'China',
+    image: 'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop',
+    bio: 'The stronghold of China, Sage creates safety for herself and her team wherever she goes. Able to revive fallen friends and stave off aggressive pushes, she provides a calm center to a hellish fight.',
+    stats: { aggression: 30, tactical: 90, difficulty: 40 },
+    abilities: [
+      { slot: 'Q', name: 'Slow Orb', description: 'Throw a slowing orb that creates a lingering field.' },
+      { slot: 'E', name: 'Healing Orb', description: 'Heal an ally or yourself over time.' },
+      { slot: 'C', name: 'Barrier Orb', description: 'Deploy a solid wall.' },
+      { slot: 'X', name: 'Resurrection', description: 'Revive a fallen ally with full health.' }
     ]
   },
   {
-    id: 'kb-fantech-maxfit81',
-    name: 'Fantech MAXFIT81 Frost Wireless',
-    category: ProductCategory.KEYBOARD,
-    price: 79.00,
-    recycledContent: 35,
-    isUpcycled: true,
-    description: '75% layout with OLED screen and high-performance wireless connectivity. Premium build for budget enthusiasts.',
-    image: 'https://images.unsplash.com/photo-1595044426077-d36d9236d54a?auto=format&fit=crop&q=80&w=1000',
-    color: '#10b981',
-    rating: 4.7,
-    reviewsCount: 89,
-    specs: [
-      { label: 'Screen', value: 'OLED Display' },
-      { label: 'Hot-swap', value: '5-pin supported' }
-    ]
-  },
-  // MICE
-  {
-    id: 'ms-razer-da-v3',
-    name: 'Razer DeathAdder V3 Pro',
-    category: ProductCategory.MOUSE,
-    price: 149.00,
-    recycledContent: 10,
-    isUpcycled: false,
-    isRecommended: true,
-    description: 'Victory takes a new shape. Refined and reforged with the aid of top esports pros.',
-    image: 'https://images.unsplash.com/photo-1527814050087-379371546a30?auto=format&fit=crop&q=80&w=1000',
-    color: '#00ff00',
-    rating: 5.0,
-    reviewsCount: 512,
-    specs: [
-      { label: 'Weight', value: '63g Ultra-lightweight' },
-      { label: 'Sensor', value: 'Focus Pro 30K Optical' }
+    id: 'viper',
+    name: 'VIPER',
+    role: 'Controller',
+    origin: 'USA',
+    image: 'https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=1000&auto=format&fit=crop',
+    bio: 'The American chemist, Viper deploys an array of poisonous chemical devices to control the battlefield and cripple the enemy’s vision. If the toxins don’t kill her prey, her mind games surely will.',
+    stats: { aggression: 60, tactical: 95, difficulty: 80 },
+    abilities: [
+      { slot: 'Q', name: 'Poison Cloud', description: 'Deploy a gas emitter that creates a toxic smoke cloud.' },
+      { slot: 'E', name: 'Toxic Screen', description: 'Deploy a long line of gas emitters that creates a tall wall of toxic gas.' },
+      { slot: 'C', name: 'Snake Bite', description: 'Fire a canister that shatters and creates a chemical pool.' },
+      { slot: 'X', name: 'Viper’s Pit', description: 'Create a massive chemical cloud that obscures vision and decays health.' }
     ]
   },
   {
-    id: 'ms-fantech-helios-v2',
-    name: 'Fantech Helios II Pro',
-    category: ProductCategory.MOUSE,
-    price: 59.00,
-    recycledContent: 25,
-    isUpcycled: true,
-    description: 'High-performance wireless gaming mouse with 4K polling rate support and Pixart 3395 sensor.',
-    image: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&q=80&w=1000',
-    color: '#f59e0b',
-    rating: 4.8,
-    reviewsCount: 67,
-    specs: [
-      { label: 'Sensor', value: 'PAW 3395' },
-      { label: 'Polling', value: 'Up to 4K Hz' }
+    id: 'kayo',
+    name: 'KAY/O',
+    role: 'Initiator',
+    origin: 'Unknown',
+    image: 'https://images.unsplash.com/photo-1563089145-599997674d42?q=80&w=1000&auto=format&fit=crop',
+    bio: 'KAY/O is a machine of war built for a single purpose: neutralizing radiants. His power to suppress enemy abilities dismantles his opponents’ capacity to fight back, giving him and his allies the ultimate edge.',
+    stats: { aggression: 80, tactical: 75, difficulty: 70 },
+    abilities: [
+      { slot: 'Q', name: 'FLASH/drive', description: 'Equip a flash grenade. Fire to throw a flash that explodes after a short fuse.' },
+      { slot: 'E', name: 'ZERO/point', description: 'Equip a suppression blade. Throw it to suppress anyone in the radius.' },
+      { slot: 'C', name: 'FRAG/ment', description: 'Equip an explosive fragment. Throw it to pulse multiple times and deal damage.' },
+      { slot: 'X', name: 'NULL/cmd', description: 'Overload with polarized radianite energy that pulses and suppresses enemies.' }
     ]
-  },
-  // STEAM WALLET
-  {
-    id: 'sw-10',
-    name: 'Steam Wallet $10 USD',
-    category: ProductCategory.STEAM_WALLET,
-    price: 10.99,
-    recycledContent: 100,
-    isUpcycled: true,
-    description: 'Global Steam Wallet activation code. Instant digital delivery to your uplink.',
-    image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQExMVFRUVGBcYFRgYFRUVFhUXFRUXFhcYFRUYHSggGBolGxYWIjEiJSkrLi4vFx8zODMtNygtLisBCgoKDg0OGhAQGislHyUtLS0tKy0tLS0tLS8tLS0tLS0tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0rLS0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAcAAACAgMBAQAAAAAAAAAAAAAAAQIEAwUGBwj/xABHEAABAwIDBQUEBgcGBQUAAAABAAIDBBESITEFBkFRYRMicYGRBzKh4RRCUoKx8DNicpLB0fEVIyRzsrMlQ2OiwhZTVJOj/8QAGQEBAQEBAQEAAAAAAAAAAAAAAAECAwQF/8QAKBEAAgIBAwMDBAMAAAAAAAAAAAECEQMSITEEQVEiMmFxgbHBE9Hw/9oADAMBAAIRAxEAPwDzRCEL6R4QQhCAEIQgBCEIAQhCAEIQgBNJCAaAhAVA/wA+aL+PzSunfx+aAd/H5oB6n5pX8fmnfqfmqB36n5qV+p+aiD1PPzTv1PzVISv1PzTB6n5qN+p9OKeLqfTiqQlfqfTipX6n04qAPU+nFMHqfTitEJg9T6cU7+KhfqfTimD1PpxVISv4+iFDEev7qEsFVCaFxo6CQhClAEIQlAEIQlAEIQlAEIQlAEIQgGhCFQCL/nqhF/z1QD8/6pg9T80vX5p38fmgHfqfmgHqfml5nn5p+Z+a0B36nn5p36nn5qJ8T8079T6cVSEr9Tz+8mD1PzUQep5+ad+p9OKAd+p9OKYd1PzUcXU+nFMHqfTilmR4ndfRCjjd19EKgxoQhYNisghNCAjZFlJZ6CjknkZBG3E+Rwa0cyeZ4DiTyCAVBQSzyCKFjpJHaNaLk9eg6nILv9mexyskF5poob/VsZXDxsQ30JXqe5m6cOz4RGwB0jgO1lt3nu/g0cB/G5XQrxz6h36T0RxKtzxWq9is4F46uJ54B0TowfMOf+C4TeHdqqoXBtREWAmzXjvRv4914yv0Nj0Xum8G/YhnNHS08lXUNF3tYbMj/bfY2OfK3UFVaHe2Gsedm7Qo3U8ko7scvejl5YH2Heyy6jI3Wo5JrdklCPY+f0Lpt/N1nbPqTFmYn96Fx1Lb5td+s05HnkeNlzVl6U01aODVOgQmhUCsiyaEAITQEoCsjz/qmi6EDz/qjzPzR+fNO/U/NChfx+ad+p+aXn/VF+v9VoEr9Tz80r9T80iep+aL+PzQhK/U8/NF+p5+aV+p+aL9T80A8TuaEsZ5lCAihCFkoIQhAML0X2H7ObJWyTnPsYu70dKcNx91rx95echWKR8jHdpEXtcwYi5hcCwXAxFzfdFyBfTMLM46otFi6dn1gtft7a8VJBJUymzIxe3Fx0a1vNxNgPFeL7v+1mshs2cNqWcz3Jf32izvNt+qx72bwVG1ocbXxBtOHSyUzTIJGgZGUl7Q2UNB+qcg45cvIsDvfg9H8qrY1Ykmm2fI6LE5zqp8laGXLy17GmFzwMzFi7bpiU6SGcUUTXhwe6shNAHXDwbOEzmA5iLEYdMsSNwt2K2qlElM98DG5OqAXNA5tbYgvd+qMuZGS9e3e3Eip5/pc00tXUAWbJM64Z+w3Oxz1JNuFl2yTjHY5xi5bmu9tezhJs/trd6CRjgekjhE4eHeafuheDr6F9rs4bsuZvGR0TGjmTK1xt91rj5LwynpWtzdm7lwH8ynT+wmb3HoewtgUlNsyGufQ/TpZrF4ObYmnEdLENAsATYm55ac3tqo2fJUU80NJ2TGkGoixEtks4dxo0AsDmAL4tMs+j3Zi21BDHLSs7SGUY2xuMZbmdS1zmlt7X7ptmp+1yCNrKWRzGR1UgPatYQQQGtuSRrZxsDxudbZRe+m+fkP22bLY0OyaimqakbNjaKcElpIJdZhdkeGi4qsNLU11G2CjbBF2sbJWAhwkDpW624WuPNdHuMLbL2p+w//AGXLkt13f4ym/wA+L/carFby+A3wdhvTV7Koql9MdkCTCGnE3IHE0O0t1XmO1545J5JIYuzY512RDMtGgaLa5/ivdd6K7bLah7aOBjobNwOIYbnCMV7yA634LzXcTd6WbawZOzC6B7pp25EBzSHNbcEj33NOpyBTHKo2/Hks1bpfg6jbO41K3Z76eNjfp9PBFPI4XLnXL8QvxB7OQAdGrz7cKkjn2hTQytD43udiadHf3byL+YB8l6psvbWzHbTdVMr3PlqAIOyMbxEfdDQ12C2rciT9Y81xuxtjGj3hjp/qiV7o/wDLfFI5ludgcN+bSpCTpp+LEkrVFT2q7stoqoPibhgmbdgGjHss17ByHuu+8eS32zNzYY9hzVc0QdUPikmjc73ogW/3YbyyAd4u6LcOhi2lNWbLmIBp6ps8R49kXN7Zo/eeL/8AVaeCxu24Kyi2zKz9Exhihtp2UcRsR0JLnfeU1y0pfS/0a0q2zzDa9RSuiYIW4Xgi/dIIGF2IPdYYjcszu73Sbi9jqPz5oRf89V6kjgF+p+aL9T80XR+fNUDv1PPzRfr/AFSv+eqd/wA9UIGM8yhHaHmU1QRQmhQCQmhQoluN0duGiqo6kC7Wktkb9qN2Tx48R1aFqEI1aphbHuO9+5FJXU4q6KNnaOwvBiLWdvGfeaL9wPIzBI1FiRcrkdg7oPZJIIRUSSvjkhb2tLJTRwCZpjfJNI8lr8LC6zWYrmy0u5m/NRs44W2lgJu6JxtYnV0bs8B8iDy4r1fZntR2bK0Y5HQu4tkY7L7zbtPqvLJZIKuUd1olvwdbs6kbDEyFnuxta0ZWyaLaBWFylT7R9lsbi+kh3RjJHE+QavPt7/anLUNMFI10EbsnSEjtXDiG4cox1BJ8FxjinJ8HR5IpFj2rbysnmbTRkOZATiI0Mti02/ZF2+JdyXnjpFie/hwGQWIuXuhBRVHilJydm2oN4KqEYYqiWNv2WvcG+Tb2C11VXSSPMsj3PefrOcXO6ZngOSwlyx3WqSCs38O0JWQlrJHtbILPa1xDXXFjiAyPELXipcwhzSWuaQWkGxBBuCCNDdWKDvRW5Ej+P8VQqWFrrHyUQNszemu/+XUf/c/+aqw7YqsckrJ5WueO+Q9wc+1/eINzqfVa8FTjfZXSi2zDG4tILTYgggjIgjMEHgQrku2Kh0jZ3TymVos2QvcXtGeQde494+pVR7LFJKLZndWyl7pTI/G6+J+N2J19cTr3N1Kn2hMxj4mSvayT32NcQ1+Vu80ZHJVkJSJYIQhUAhCEKCSaEAXPNNLF1QhAQmhUokJoQgkJoQokWUg4Wt11SKyBJtQup3B3QG0nzM7bsuxEZ9zHfGXj7QtbB8VJNRVsJN7I5clCzVsOCSSO98D3svzwOLb24aKuVozQiUkIUKbXY7snDwKz1UGIdeCo7Id37cwfhmtq9Z7g0eHNRK2FZD9YeaoYltMyRcopkptaTkENIQCV1KQ/VHmeZ/koqAEJoVAkJoQoJJoQCTQhACEWQqQEwkhAFkIQUAiFe2Ns2SqkbTxNxSPNmjhYalx4NA4qjZev+wnZjcFRVkd4uELTyaGh7reJc390LlklojZqC1Ojc7teyyjgaHVA+ky8cX6IHk2PQjq6/lou1o6GKIWijZGOTGNb+AVlaXZG80FTPPTQlznU+ESOtZmJznNLWnUkFhubW5XXgblLdnrSUSe0t2KKov2tNC4njgAdnyeLOB815tvj7Jgxjp6J57oLjDI4HIC57OQ+Gjr+IXWUPtMoHzOgkc+B7XuZeQAMJa4tuHtJAFx9ay0Xth3vEcYoIiHOlAdPY/8AJOYZiGmPj+r+0F0x/wAikkYnoas8foKKSZ2GJhcemg6uOg812mx9zGMs+c9o77AyYPHi74BdBsjsjEx0LQ1jgCABbxv15q2vt48EVu9z5k8reyKMexaYG4gjB6NAXMbehDZnBoAAw5DIe6F2q5HeH9M/7v8ApCx1KSiXC22a2jpHSuDGjM68gOJK6fZ27NPFmWCR3N4uB+y05D8eqzbAohHEDbvP7x8Pqj0/FbNaw4Ulb5JkyW6RhNKy1sDbcsIt6WWp2puxDICYwInni0d0+Lf5WK2bdoRF/ZCRuP7N8/DxVldnGMlRy1SieRVtE+F5jeLOb6EcCDxBWFeg767N7SEyj3os/Fn1gfDXyK8+XhyQ0Oj1wnqVghFlnghGp9FzOiVmBCtOpgTkbBV5GWNksrTRFCLIsqZBCEIBoTRZUyhITQhRITshAJevewraTcFRSE97EJWjmC0MdbwLW/vBeT9gbXy9QVm2VtKWmmZUQuwyMNweB5tcOLSMiFzyR1xo1CVOz6oWm2Tu1BTVE9TCC01GEyNv3MTS9xc0agkvNxp4LT7o+0KlrA1j3CGfjG82Dj/03nJ3hr0XYr5zUo7M9ialuj583t3B2hDJLP2PaxukkfiiOMhrnlwxMsHXsc7AjquJt/L0yt8LL65XBe0P2fRVjHzwNDKoAnKwE9h7r+GI6B3hfLT04+o7SOM8PdHlm6e8Ladj45b4R3mWFzc6tHjr6rp93tsGqEjsIaGuAaL3NrXuTzXmeEg2IIIyIORBGoI4Fdx7Pf0cv7Y/0r6eGbbUex4ssUk2dWuC3ibirjH9p0Tf3msH8V3q4Xap/wCJt/zIfwYuufhfU54nTZ3QHBUttVfYwSSjVrcvE5D4lXVp97mg0r76XYT5Pauk3UWc4+44htRgGMEh593mBz8SvR9m1PaxRyfba0noSM/jdeTveXG5Xpm7A/wsP7P/AJG3wXm6blnbMtjZTRhzS06OBB8CLLyBzLEtOoNvTJewry6oAD5HW+u//UbK9Twi9OrbRVhiINyNFN1Q3SyxTznRViV5D2L08FmV9sgcimJbgXGiqJhQllmV4dnx/FYlKGTCnJbUcVpGZLuY0J2QqYJ2Tsp4UYVTFkLIsp4UWQWQbqpNiJ0BPgFAalXKCodiIGnJZs61aRVGSvbF2VJVzsp4hd7zbo0fWc7k0DP4alLaEJvitkfxXsnsh2FDFS/SmubJLN75BB7MDSLoRq7r0AWMmTRGyQhqlR5JvNuvUULyyeM4b2bIATHIOFncD+qc/wAV6H7D66V5qY3yPcxjYcDXOc4NuZAcIJy0GnJepTRNeC17Q5pyIcAQR1B1VDZWwKWmc98ELIjJYPwCwOG5Hd0HvHTmvLLPqhTW56I4tMrT2NLuRva+tkqYHxhrqd5bibfC5uN7W3B913c89ctF1qq0Oz4oQWxRtYHOLnYQBic43LnHiTzKnXVjIY3zSODWMBc5x0AC4ypvZHWNpbnzp7RqVse06prcgXh1usjGvd/3OK2vs9/Ry/tj/SuZ3g2kaqpmqSLdq8uA5N0aD4NAHkun9n/6OX9sf6V9jplTVnzs7tOjql53vPLgrXPH1TG70a0/wXoi853uH+Lk+5/ttXpz+04YuT0SN4cA4aEAjwOYWDadJ20T4tMTSAeR4H1stLuXtMPj7Bx78Yy6s4W8NPRdGuialEw1TPKI9nymTscB7S9iLadT043XqVJTiNjIxoxoaPuiyyoWcePQanPUYqucRsdIdGtLvQXXlkjiR4rsN9Np2b9Gbm51i+3AahviTY+A6rlxSlrcR4cF5uplbrwd+m2NbMwjVY7LLM+6wrznpYwFINyv+ev4qVMy5seP8VmqICw2NuQOgI1AdyQyzEyNZHBJ83fxAW/V5HiPBSqXBwxA+IUsy1YdieX4IUfpPRNNTGkvT0oGbcxxWAxnkVOyvwl1rEXt1ve/BWzFGrdkLqNPd3iru0oWhhIGlviVQpJi03H5uCP5JZuKMTXalWdnDvKo0q9s1ud/FGasv1PuFGw9tVFG/tIJCwn3hqx9uD2nI/iOCyAqvUQZ3AyU2apmHfKPTti+1thAbUwOaftRWc09SxxBb5Fy7bYG81NW4hA8uLA0uBY9pGK9veAvodF85hq3O7u8lRRF5gLQZA0OxNxe7e1s8veK4TwRftOkc7v1Hq+2PaZQwFzG9pK9pLS1rC0BwNjdz7C1+IuvLN898qjaFmutHCDcRNNxfgXu+ufQDktLUSF73Pdq5xcfFxJPxKiIr5c10hijHczLLKWxUEDrYrG3NdLuhtWOFr2ODiXOBFhfIC2eeSx2DWho4BYIg0EkAAnVdo5HF2jEoWqOu/t+H9b0+a43eV+Od8gBwuw2v0aAfiFNz05W4xa9lZZpS2ZlY0uDUwyOY4PaS1wNwRqCF2Ozd7mkATNIP2mi4PUt1Hldc79BAaTqbeXkqwSGVx4JKF8nff8AqOltftP+19/Sy11fvOXAinYTwxuyA8G8fNcmAn2h0v6Lo+ok0ZWNIssp7uxvdck3NzmT1Kc8oII5qp4qEki856YR7lSWKxKwq0XqTGDoqaexijHFpsfh4KTprmzvklLhabYb+ZCkYrtyv4HP4ocys8WJCQKLLLT4b2dofgoykbt5H4IV/wCjM5fFCzrKTspNHK6m9oGlyNfkpQ5XOeWfj0WjmVq4ODCDfhr4rXMWx2hLdmG/H+a1zVTSOs9m8Mc001FI1h+kwPZG5wBLJWguY5pPum2PTkFm9nlMwTvnqGXjpYpJZWkA5tGEMI4m5OX6q5jY20TTzxVDdYntfYcQ1wJHmLjzXpG/tO2jpqgxkf8AEahj2W/9lrBM7/8AVxHg4LnPmvP+/B0XF+DUbwbHI2iaWMd2aRhitpgnIcLdG3I+6txLSR1O1zAxrWU9PbHYBrcEA7+K2t33bfkVf3ee19NT7UfYmigmjfzc+MYYB1u1587Kju+YYKCWoqnSNdXOdGHMaHSGNt+0IByAc7ED5Lk2/wBFr+ypvn2U0MG0aeNrI5C+KRoaG4XsLsFwBlibf0aqVXDH/ZEUnZtDzVuaXAAOt2TzYu1tloug2DFQTwVGzaeWdzpgZIxK1jQ2WMXBaW8TZtxyatYaCSTY8TI2PeW1jyQ1jnEARPBu0C4zICqdUvkjTe/waLdGFrq2ma5oc0ytBBAIIvoQdVZ3gjY2pnaGtAEsgAAAAAebADgFZ3U2XLHW0zpI5GDtWAF0b2AnldwFyq2+Wz6r6RMY6eocHTSEFsMjhbGSLEN0K036/sRR9JvaSvFNsyOdsEEj3VDoyZYhJ3cDnZZg6tC1FVvY95bemo24XBwwwWxWByd3s255jwW02FtGth2RG6mbJ2v0uRjw2EyODQ11w5haS2zgBprkuf3o2jtCdjHVbZMEbrtL6fsmhzhb3gxtz0KkVbZW6o6TZ+9Ik2fV1ZpaPHTvgaz/AA4wkSyNY7EMV72OWYXL7V2q6ocJHRwx2ba0TOzacybkXOeeqzbGIOxtp8P72kJ5X7dnBaSlku0Hy1vpkrCKTYm9kdtRRw0VLFVSxNmnqMRhY/OONjTbG5v1icj5jTNJu8sMwwVtLC6M/Whj7OWPLIsN8+GWXnopVVK6voKaSAF8tI0wyxDN+HLA9rdXCzRpzPIrVbG3dqqh2AROY0XLnytdHGwDXE5w+AWajyxb4Ra2RRU1LS/2hNF25kkcylif7tmk3klAyOhy09QQQ75NkcI6ujpXwHI9nF2ckYOV43B17gX5HqFsG0n07Z7IIrOno3v7jSO/G8k4mfaF7enULmqHdasnkELYJG3NnOexzWsHEucQALctSqtLvUKdqjptj7EZSbSqIsLJo20cs8HaNDw5pdGWEg8QQ5t+NjzWgG+jXECp2fRSRn3hHD2UgB1LJMRsbeHiF1dLXMn2nURwHGyDZstOwjPGWOjuRbXN1uuHJef7P3WrZnNjbSzAm2b4nsYOrnOAACRp+74NuXZHX7C3Zhh2vTBgE1LURPlhxgO7piccLgdS029RxWkp9+ZjmaPZ45/4S3/muu2VUMG1dn0MThIykp5Iy8Zh0nZOD7dBYedxwWgqd59t9mAGVBLsj/ghpbP/AJSidvfx3+4Z59USmR7nkAFzibDIDEdAOA4BXaltm5ZWsqDG4HWIIwmxBFiC05gg6FbFzg9viut0cXua8vvnx5rI2LELjVYnNIyKkx5GYWgGA8iks/0w8h6ITcFxktudgb+KTJrjisEjsrLJTuGHP+q3Rz7GKr0sqnorNRmT4quQoaQmnPh0V2t2jLK2Jj5HPbGMMbXEnsxkLN5DIeipgAEFTlfe38VKKbSj2lKGGASOETs3sB7rnA3BLeJFh6BWK6teWxtke5zGd1gJyY06ho4aD0WoifY3WaqkJsOt1GlZLNxTYo3CSN7mPbm1zTYjIjI88yqVPvLWRBwZVTNLi5zgHkf3jnXLut+Kk2c9VX2kO5e3EdFK8lTrgsxb0VkjmB9TM/A7G0l5OEhpFxy11U63fHaAecNZOB/mHWy02zoy4m3ALDIO6PEg/BTSvBpSZt9l7zVkZwtqZmNc5znAPIu95u5x6k5lWd4tv1MrBBLPJI0kOIc8kAjTI8VzkRzB6hTlcSbnjf1TSuRbJMrpGxvha9wjkLS9gPdeWG7S4cbEAq1s1xzYRqMQ9L/gtardNIWvaf1c+uRVI2bH6c+Ah8cj438HMcWuHHUajLTis029NZO10c1TJI3XCXWDrcwAAfNaqvficTwFgPMX/gUqCDHi6WSkTsbajrXMIkjc5jhmHNJa4eBC2VbvNVzMMUlRK5pyIxWBHJ1rXHiuekkDDY39PwUfpo6o4ozci3RVc1O8vgkdG4jDiacJwkg2uOFwPRWK7eatcMD6qZzdHAyOsehAOY8Vq3VYPA+oWOSUHp8bq0ips2Gz618cjJYnljxcAtNiMTcxf4KxU75bQxG1ZOAMv0h4LTQOw94HMdBYfHNQkHPXwso0jSsTy5+KRxJJN3E6kuJJJPO/4qcMtstQowPzDSe6db6AX1WR0jSSGtsOBuSbKhmV2FwVZzLZLI0LNhxDqhLKvZ9CkrHZnkhLIDkgVla4dcs+GaYcOvwW7FGAhQcB0VsPbyJt1Gaw4mXvYX8lLFFW+mnJNxueHLwSFrjIWJUo+8eV7qFMgFknTXtcdFY7RobhvnzUGvYL20OvFSwkTpqlzRYWPxssVTK95DTfLhb+CzNa0XcNdQb5A58PzoosrG9qHkZWt4pZaCge5jnYW3On4rBUtNwCMySTlqSdbK1FKO0e4WsbWF1jrZAXMPEHnfjfyWbLRXijNyLE26dVOWE2uWnLoVlp5QJHnn1WaoqhhI4kHiVbJW5rMBte2V9Vbp4jYG3C2nVYsf8AdYf1r69OSuwTAMA5DmpZWrKtVHplrkp7Pe5jnADxFlGpfiLcwRfyCInnG83zPFLFGwmmaczGSeoH4lU4zAdWEHxd/NY5WFxzdn4qJpjzBSyUE7WW7oI9T+KgYRb3s+Gqh0ui5Hh6qlBzLDUJtdb7Jtz4+Cj2htZSdIDw4goCQYbcPK90oHgE3CzMcDw8B0Ui0cipYImSxBBBB5/gVYDmnMZEfBV8A5FBj6FSxRm7TqE1g7L9VCWKQwQlcKPokfLPJd6Odk7gjMKLw23BQ9M8vRJx8M8lKKR8hnkm3nl6qJ8s8vDqkD4cvRZKSv4ckAeCifLPJIu8OSllJ2Tw+CxA+CmJPBQqJhvgkWeCjjT7VAPs+qHI7VPtuihTHwU258Edqn2yATgOSRaNUGVQLkBI80iVG6V1SUSum1QujEgJudfhZRSuldAWWzkfAeSyfSSqQcpXUoFr6SeaYmKq3RiSkUt9sUKrjQlAmePgsZ1TQurMIxqBTQsM2IpsQhZBJBQhAASQhUg0IQgBMIQhQQhCARSQhCggIQhBBMoQgBCEIBKTUIQAkEIQDQhCA//Z',
-    color: '#171a21',
-    rating: 5.0,
-    reviewsCount: 15000,
-    specs: [{ label: 'Region', value: 'Global / US' }]
-  },
-  {
-    id: 'sw-50',
-    name: 'Steam Wallet $50 USD',
-    category: ProductCategory.STEAM_WALLET,
-    price: 51.50,
-    recycledContent: 100,
-    isUpcycled: true,
-    isRecommended: true,
-    description: 'High-value Steam Wallet balance. Best for AAA titles and inventory expansions.',
-    image: 'data:image/jpeg;base64,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',
-    color: '#171a21',
-    rating: 5.0,
-    reviewsCount: 8900,
-    specs: [{ label: 'Region', value: 'Global / US' }]
-  },
-  // HARDWARE (Existing)
-  {
-    id: 'gpu-4090',
-    name: 'NVIDIA RTX 4090 Founders Edition',
-    category: ProductCategory.HARDWARE,
-    price: 1849.00,
-    recycledContent: 12,
-    isUpcycled: true,
-    isRecommended: true,
-    description: 'The ultimate GeForce GPU. Refurbished and tested for maximum stability.',
-    image: 'https://images.unsplash.com/photo-1671212040030-f65563c63567?auto=format&fit=crop&q=80&w=1000',
-    color: '#10b981',
-    rating: 5.0,
-    reviewsCount: 128,
-    specs: [
-      { label: 'VRAM', value: '24GB GDDR6X' },
-      { label: 'Architecture', value: 'Ada Lovelace' }
-    ]
-  },
-  {
-    id: 'cpu-7800x3d',
-    name: 'AMD Ryzen 7 7800X3D',
-    category: ProductCategory.CPU,
-    price: 439.00,
-    recycledContent: 8,
-    isUpcycled: true,
-    isRecommended: true,
-    description: 'The dominant gaming processor with 3D V-Cache.',
-    image: 'https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&q=80&w=1000',
-    color: '#f59e0b',
-    rating: 4.9,
-    reviewsCount: 412,
-    specs: [
-      { label: 'L3 Cache', value: '96MB' },
-      { label: 'Socket', value: 'AM5' }
-    ]
-  },
-  // CASES
-  {
-    id: 'case-kilowatt',
-    name: 'Kilowatt Supply Case',
-    category: ProductCategory.GAME_REBOOT,
-    price: 2.50,
-    recycledContent: 100,
-    isUpcycled: true,
-    description: 'CS:GO standard issue supply case containing various digital artifacts.',
-    image: 'data:image/jpeg;base64,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',
-    color: '#eab308',
-    rating: 5.0,
-    reviewsCount: 5000,
-    rarity: 'mythical',
-    specs: []
-  },
-  {
-    id: 'case-revolution',
-    name: 'Revolution Archive Case',
-    category: ProductCategory.GAME_REBOOT,
-    price: 1.80,
-    recycledContent: 100,
-    isUpcycled: true,
-    description: 'Rare CS:GO archive case with potential for legendary patterns.',
-    image: 'data:image/jpeg;base64,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',
-    color: '#ec4899',
-    rating: 4.9,
-    reviewsCount: 12400,
-    rarity: 'legendary',
-    specs: []
   }
 ];
